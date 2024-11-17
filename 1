@@ -1,0 +1,892 @@
+def save_to_file():
+    file_name = input("Enter the file name (e.g., 'data.txt'): ")
+    with open(file_name, "a") as file:
+        print("Enter your data (type 'exit' to stop):")
+        while True:
+            user_input = input("Enter data: ")
+            if user_input.lower() == 'exit':
+                print(f"Data saved to '{file_name}'.")
+                break
+            file.write(user_input + "\n")
+
+if __name__ == "__main__":
+    save_to_file()
+
+
+
+import pickle
+
+def add_student(file_name):
+    with open(file_name, "ab") as file:
+        roll_no = input("Enter Roll Number: ")
+        name = input("Enter Name: ")
+        marks = float(input("Enter Marks: "))
+        student = {"Roll No": roll_no, "Name": name, "Marks": marks}
+        pickle.dump(student, file)
+        print("Student record added successfully.\n")
+
+def view_students(file_name):
+    try:
+        with open(file_name, "rb") as file:
+            print("\nStudent Records:")
+            while True:
+                try:
+                    student = pickle.load(file)
+                    print(f"Roll No: {student['Roll No']}, Name: {student['Name']}, Marks: {student['Marks']}")
+                except EOFError:
+                    break
+    except FileNotFoundError:
+        print("No student records found.\n")
+
+def main():
+    file_name = "students.dat"
+    while True:
+        print("\nMenu:")
+        print("1. Add Student")
+        print("2. View Students")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_student(file_name)
+        elif choice == "2":
+            view_students(file_name)
+        elif choice == "3":
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
+
+if __name__ == "__main__":
+    main()
+
+
+import pickle
+
+def add_student(file_name):
+    with open(file_name, "ab") as file:
+        roll_no = input("Enter Roll Number: ")
+        name = input("Enter Name: ")
+        marks = float(input("Enter Marks: "))
+        student = {"Roll No": roll_no, "Name": name, "Marks": marks}
+        pickle.dump(student, file)
+        print("Student record added successfully!\n")
+
+def view_students(file_name):
+    try:
+        with open(file_name, "rb") as file:
+            print("\nStudent Records:")
+            while True:
+                try:
+                    student = pickle.load(file)
+                    print(f"Roll No: {student['Roll No']}, Name: {student['Name']}, Marks: {student['Marks']}")
+                except EOFError:
+                    break
+    except FileNotFoundError:
+        print("No records found. Add students first.\n")
+
+def main():
+    file_name = "student_data.dat"
+    while True:
+        print("\nMenu:")
+        print("1. Add Student Record")
+        print("2. View All Student Records")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_student(file_name)
+        elif choice == "2":
+            view_students(file_name)
+        elif choice == "3":
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
+
+if __name__ == "__main__":
+    main()
+
+def interest(principal, rate, time):
+    si = (principal * rate * time) / 100
+    return si
+
+def main():
+    print("Simple Interest Calculator")
+    principal = float(input("Enter the principal amount: "))
+    rate = float(input("Enter the rate of interest: "))
+    time = float(input("Enter the time (in years): "))
+
+    si = interest(principal, rate, time)
+    print(f"Simple Interest: {si:.2f}")
+
+if __name__ == "__main__":
+    main()
+
+def list_operations():
+    my_list = []
+
+    while True:
+        print("\nMenu:")
+        print("1. Add an element")
+        print("2. Remove an element")
+        print("3. Display the list")
+        print("4. Sort the list")
+        print("5. Search for an element")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            element = input("Enter an element to add: ")
+            my_list.append(element)
+            print(f"'{element}' added to the list.")
+        elif choice == "2":
+            element = input("Enter an element to remove: ")
+            if element in my_list:
+                my_list.remove(element)
+                print(f"'{element}' removed from the list.")
+            else:
+                print(f"'{element}' not found in the list.")
+        elif choice == "3":
+            print("List contents:", my_list)
+        elif choice == "4":
+            my_list.sort()
+            print("List sorted.")
+        elif choice == "5":
+            element = input("Enter an element to search for: ")
+            if element in my_list:
+                print(f"'{element}' found at index {my_list.index(element)}.")
+            else:
+                print(f"'{element}' not found in the list.")
+        elif choice == "6":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    list_operations()
+
+
+
+
+
+def search_and_count(lst, element):
+    frequency = lst.count(element)
+    return frequency
+
+def main():
+    print("List Search and Frequency")
+    n = int(input("Enter the number of elements in the list: "))
+    lst = []
+
+    for i in range(n):
+        item = input(f"Enter element {i + 1}: ")
+        lst.append(item)
+
+    print("\nList:", lst)
+    element = input("Enter the element to search: ")
+    frequency = search_and_count(lst, element)
+
+    if frequency > 0:
+        print(f"The element '{element}' is present {frequency} time(s) in the list.")
+    else:
+        print(f"The element '{element}' is not present in the list.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+def modify_list(lst):
+    modified_list = []
+    for num in lst:
+        if num % 2 == 0:
+            modified_list.append(num / 2)  # Halve the even numbers
+        else:
+            modified_list.append(num * 2)  # Double the odd numbers
+    return modified_list
+
+def main():
+    print("Double Odd and Halve Even Program")
+    n = int(input("Enter the number of elements in the list: "))
+    lst = []
+
+    for i in range(n):
+        num = int(input(f"Enter element {i + 1}: "))
+        lst.append(num)
+
+    print("\nOriginal List:", lst)
+    result = modify_list(lst)
+    print("Modified List:", result)
+
+if __name__ == "__main__":
+    main()
+
+
+def tuple_operations():
+    print("Tuple Operations Program")
+    
+    # Create a tuple
+    n = int(input("Enter the number of elements in the tuple: "))
+    elements = []
+    for i in range(n):
+        item = input(f"Enter element {i + 1}: ")
+        elements.append(item)
+    my_tuple = tuple(elements)
+    
+    print("\nCreated Tuple:", my_tuple)
+
+    while True:
+        print("\nMenu:")
+        print("1. Access an element")
+        print("2. Find the length of the tuple")
+        print("3. Count occurrences of an element")
+        print("4. Find the index of an element")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            index = int(input("Enter the index to access: "))
+            if 0 <= index < len(my_tuple):
+                print(f"Element at index {index}: {my_tuple[index]}")
+            else:
+                print("Invalid index.")
+        elif choice == "2":
+            print(f"Length of the tuple: {len(my_tuple)}")
+        elif choice == "3":
+            element = input("Enter the element to count: ")
+            count = my_tuple.count(element)
+            print(f"'{element}' occurs {count} time(s) in the tuple.")
+        elif choice == "4":
+            element = input("Enter the element to find its index: ")
+            if element in my_tuple:
+                index = my_tuple.index(element)
+                print(f"Index of '{element}': {index}")
+            else:
+                print(f"'{element}' is not in the tuple.")
+        elif choice == "5":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    tuple_operations()
+
+
+def dictionary_operations():
+    print("Dictionary Operations Program")
+    
+    # Create an empty dictionary
+    my_dict = {}
+    
+    while True:
+        print("\nMenu:")
+        print("1. Add key-value pair")
+        print("2. Remove key-value pair")
+        print("3. Display dictionary")
+        print("4. Search for a key")
+        print("5. Get value of a key")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            key = input("Enter the key: ")
+            value = input("Enter the value: ")
+            my_dict[key] = value
+            print(f"Key-Value pair ('{key}', '{value}') added.")
+        elif choice == "2":
+            key = input("Enter the key to remove: ")
+            if key in my_dict:
+                del my_dict[key]
+                print(f"Key '{key}' and its value have been removed.")
+            else:
+                print(f"Key '{key}' not found.")
+        elif choice == "3":
+            print("\nCurrent Dictionary:")
+            for key, value in my_dict.items():
+                print(f"{key}: {value}")
+        elif choice == "4":
+            key = input("Enter the key to search for: ")
+            if key in my_dict:
+                print(f"Key '{key}' found with value: {my_dict[key]}")
+            else:
+                print(f"Key '{key}' not found.")
+        elif choice == "5":
+            key = input("Enter the key to get its value: ")
+            if key in my_dict:
+                print(f"Value for key '{key}': {my_dict[key]}")
+            else:
+                print(f"Key '{key}' not found.")
+        elif choice == "6":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    dictionary_operations()
+
+
+
+def string_operations():
+    while True:
+        print("\nMenu:")
+        print("1. Reverse a string")
+        print("2. Convert to uppercase")
+        print("3. Convert to lowercase")
+        print("4. Count occurrences of a character")
+        print("5. Find the length of the string")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            string = input("Enter a string: ")
+            print("Reversed string:", string[::-1])
+        elif choice == "2":
+            string = input("Enter a string: ")
+            print("Uppercase string:", string.upper())
+        elif choice == "3":
+            string = input("Enter a string: ")
+            print("Lowercase string:", string.lower())
+        elif choice == "4":
+            string = input("Enter a string: ")
+            char = input("Enter the character to count: ")
+            print(f"Occurrences of '{char}':", string.count(char))
+        elif choice == "5":
+            string = input("Enter a string: ")
+            print("Length of the string:", len(string))
+        elif choice == "6":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    string_operations()
+
+
+
+
+def reverse_string(string):
+    return string[::-1]
+
+def to_uppercase(string):
+    return string.upper()
+
+def to_lowercase(string):
+    return string.lower()
+
+def count_occurrences(string, char):
+    return string.count(char)
+
+def string_length(string):
+    return len(string)
+
+def string_operations():
+    while True:
+        print("\nMenu:")
+        print("1. Reverse a string")
+        print("2. Convert to uppercase")
+        print("3. Convert to lowercase")
+        print("4. Count occurrences of a character")
+        print("5. Find the length of the string")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            string = input("Enter a string: ")
+            print("Reversed string:", reverse_string(string))
+        elif choice == "2":
+            string = input("Enter a string: ")
+            print("Uppercase string:", to_uppercase(string))
+        elif choice == "3":
+            string = input("Enter a string: ")
+            print("Lowercase string:", to_lowercase(string))
+        elif choice == "4":
+            string = input("Enter a string: ")
+            char = input("Enter the character to count: ")
+            print(f"Occurrences of '{char}':", count_occurrences(string, char))
+        elif choice == "5":
+            string = input("Enter a string: ")
+            print("Length of the string:", string_length(string))
+        elif choice == "6":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    string_operations()
+
+
+
+def read_and_process():
+    print("Read and Process Input Program")
+    
+    # Read a string input from the user
+    user_string = input("Enter a string: ")
+    print(f"You entered the string: {user_string}")
+    
+    # Read a number input from the user
+    try:
+        user_number = int(input("Enter a number: "))
+        print(f"You entered the number: {user_number}")
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+
+    # Perform some operations with the inputs
+    print(f"Length of the string: {len(user_string)}")
+    print(f"Double the number: {user_number * 2}")
+
+if __name__ == "__main__":
+    read_and_process()
+
+
+
+
+
+def read_and_process():
+    print("Read and Process Input Program")
+    
+    user_string = input("Enter a string: ")
+    print(f"You entered the string: {user_string}")
+    
+    try:
+        user_number = int(input("Enter a number: "))
+        print(f"You entered the number: {user_number}")
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+
+    print(f"Length of the string: {len(user_string)}")
+    print(f"Double the number: {user_number * 2}")
+
+if __name__ == "__main__":
+    read_and_process()
+
+
+
+
+
+def remove_all_lines(file_name):
+    with open(file_name, 'w') as file:
+        file.truncate(0)
+
+if __name__ == "__main__":
+    file_name = input("Enter the file name to remove all lines: ")
+    remove_all_lines(file_name)
+    print(f"All lines removed from {file_name}")
+
+
+def read_characters():
+    user_input = input("Enter a string: ")
+    for char in user_input:
+        print(f"Character: {char}")
+
+if __name__ == "__main__":
+    read_characters()
+
+
+
+def create_binary_file():
+    data = "Hello, this is a binary file!"
+    
+    with open("example.bin", "wb") as file:
+        file.write(data.encode())  # Convert string to bytes and write to the file
+    
+    print("Binary file 'example.bin' created successfully.")
+
+if __name__ == "__main__":
+    create_binary_file()
+
+
+
+
+def update_marks():
+    student_name = input("Enter the student's name to update marks: ")
+    new_marks = input(f"Enter new marks for {student_name}: ")
+
+  
+    with open("student_marks.txt", "r") as file:
+        lines = file.readlines()
+
+    
+    with open("student_marks.txt", "w") as file:
+        for line in lines:
+            if student_name in line:
+                file.write(f"{student_name}: {new_marks}\n")
+            else:
+                file.write(line)
+    
+    print(f"Marks for {student_name} updated to {new_marks}")
+
+if __name__ == "__main__":
+    update_marks()
+
+
+
+
+
+
+
+import csv
+
+def create_csv_file():
+    data = [
+        ["Name", "Age", "Grade"],
+        ["John", 15, "A"],
+        ["Alice", 16, "B"],
+        ["Bob", 14, "A"]
+    ]
+    
+    with open("students.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
+    
+    print("CSV file 'students.csv' created successfully.")
+
+if __name__ == "__main__":
+    create_csv_file()
+
+
+
+
+    
+    
+import sqlite3
+
+def create_table():
+    conn = sqlite3.connect('students.db')  # Create or open a database file
+    cursor = conn.cursor()
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER NOT NULL,
+        grade TEXT NOT NULL
+    )
+    ''')
+
+    conn.commit()
+    print("Table 'students' created successfully.")
+    conn.close()
+
+def insert_data():
+    conn = sqlite3.connect('students.db')
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES ('John', 15, 'A')")
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES ('Alice', 16, 'B')")
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES ('Bob', 14, 'A')")
+
+    conn.commit()
+    print("Data inserted successfully.")
+    conn.close()
+
+def query_data():
+    conn = sqlite3.connect('students.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM students")
+    rows = cursor.fetchall()
+
+    print("Data from 'students' table:")
+    for row in rows:
+        print(row)
+
+    conn.close()
+
+if __name__ == "__main__":
+    create_table()
+    insert_data()
+    query_data()
+
+
+
+
+
+
+import mysql.connector
+
+def create_connection():
+    return mysql.connector.connect(
+        host="localhost",       # Hostname (use "localhost" if MySQL is running locally)
+        user="your_username",   # Your MySQL username
+        password="your_password",   # Your MySQL password
+        database="your_database"  # The database name
+    )
+
+def create_table():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS students (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        age INT NOT NULL,
+        grade VARCHAR(2) NOT NULL
+    )
+    ''')
+
+    conn.commit()
+    print("Table 'students' created successfully.")
+    conn.close()
+
+def insert_data():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES (%s, %s, %s)", ('John', 15, 'A'))
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES (%s, %s, %s)", ('Alice', 16, 'B'))
+    cursor.execute("INSERT INTO students (name, age, grade) VALUES (%s, %s, %s)", ('Bob', 14, 'A'))
+
+    conn.commit()
+    print("Data inserted successfully.")
+    conn.close()
+
+def query_data():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM students")
+    rows = cursor.fetchall()
+
+    print("Data from 'students' table:")
+    for row in rows:
+        print(row)
+
+    conn.close()
+
+if __name__ == "__main__":
+    create_table()
+    insert_data()
+    query_data()
+
+
+
+
+import mysql.connector
+
+def create_connection():
+    return mysql.connector.connect(
+        host="localhost",       # Hostname (use "localhost" if MySQL is running locally)
+        user="your_username",   # Your MySQL username
+        password="your_password",   # Your MySQL password
+        database="your_database"  # The database name
+    )
+
+def delete_record(student_name):
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Delete record where name matches the input
+    cursor.execute("DELETE FROM students WHERE name = %s", (student_name,))
+
+    conn.commit()
+
+    if cursor.rowcount > 0:
+        print(f"Record for {student_name} deleted successfully.")
+    else:
+        print(f"No record found for {student_name}.")
+    
+    conn.close()
+
+if __name__ == "__main__":
+    student_name = input("Enter the student's name to delete the record: ")
+    delete_record(student_name)
+
+
+
+import mysql.connector
+
+def create_connection():
+    return mysql.connector.connect(
+        host="localhost",
+        user="your_username",
+        password="your_password",
+        database="your_database"
+    )
+
+def delete_record(student_name):
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM students WHERE name = %s", (student_name,))
+    conn.commit()
+
+    if cursor.rowcount > 0:
+        print(f"Record for {student_name} deleted successfully.")
+    else:
+        print(f"No record found for {student_name}.")
+    
+    conn.close()
+
+if __name__ == "__main__":
+    student_name = input("Enter the student's name to delete the record: ")
+    delete_record(student_name)
+
+
+
+from collections import Counter
+
+def most_occurring_word(text):
+    words = text.split()
+    word_counts = Counter(words)
+    most_common_word, count = word_counts.most_common(1)[0]
+    return most_common_word, count
+
+if __name__ == "__main__":
+    text = input("Enter a text: ")
+    word, count = most_occurring_word(text)
+    print(f"The most occurring word is '{word}' with {count} occurrences.")
+
+
+
+
+import mysql.connector
+
+def create_connection():
+    return mysql.connector.connect(
+        host="localhost",
+        user="your_username",
+        password="your_password",
+        database="your_database"
+    )
+
+def create_employee_table():
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS employees (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        position VARCHAR(100),
+        salary FLOAT,
+        hire_date DATE
+    )
+    ''')
+    conn.commit()
+    print("Employee table created successfully.")
+    conn.close()
+
+def insert_employee(name, position, salary, hire_date):
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO employees (name, position, salary, hire_date) VALUES (%s, %s, %s, %s)", 
+                   (name, position, salary, hire_date))
+    conn.commit()
+    print("Employee data inserted successfully.")
+    conn.close()
+
+def display_employees():
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM employees")
+    rows = cursor.fetchall()
+    print("Employee Records:")
+    for row in rows:
+        print(row)
+    conn.close()
+
+if __name__ == "__main__":
+    create_employee_table()
+    insert_employee("John Doe", "Software Engineer", 70000, "2023-01-15")
+    insert_employee("Alice Smith", "Data Analyst", 65000, "2022-06-20")
+    display_employees()
+
+
+
+linear_list = [10, 20, 30, 40, 50]
+
+print("Element at index 0:", linear_list[0])
+print("Element at index 2:", linear_list[2])
+
+linear_list.append(60)
+print("List after appending 60:", linear_list)
+
+linear_list.insert(2, 25)
+print("List after inserting 25 at index 2:", linear_list)
+
+linear_list.remove(40)
+print("List after removing 40:", linear_list)
+
+removed_element = linear_list.pop(3)
+print(f"Removed element: {removed_element}")
+print("List after popping index 3:", linear_list)
+
+
+
+
+def create_file_with_data(filename, data):
+    with open(filename, 'w') as file:
+        for item in data:
+            file.write(item + '\n')
+
+if __name__ == "__main__":
+    filename = "data.txt"
+    data = ["John", "Alice", "Bob", "Charlie", "David"]
+    create_file_with_data(filename, data)
+    print(f"Data has been written to {filename}.")
+
+
+
+
+def push(stack, item):
+    stack.append(item)
+    print(f"Pushed: {item}")
+
+def pop(stack):
+    if len(stack) == 0:
+        print("Stack is empty! Cannot pop.")
+    else:
+        item = stack.pop()
+        print(f"Popped: {item}")
+
+def display(stack):
+    print("Stack:", stack)
+
+def stack_operations():
+    stack = []
+    
+    while True:
+        print("\nMenu:")
+        print("1. Push item")
+        print("2. Pop item")
+        print("3. Display stack")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            item = input("Enter item to push: ")
+            push(stack, item)
+        elif choice == "2":
+            pop(stack)
+        elif choice == "3":
+            display(stack)
+        elif choice == "4":
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    stack_operations()
+
+
+    
+
+
+
+
+
+
+
+
+    
+
+
+    
